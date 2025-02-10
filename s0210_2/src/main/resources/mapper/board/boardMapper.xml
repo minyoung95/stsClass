@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.dao.BoardMapper">
+
+	<!-- 전체글 가져오기 : 역순 -->
+	<select id="blist" resultType="com.java.dto.BoardDto">
+		select * from board order by bno desc
+	</select>
+	
+	<!-- 게시글 1개 가져오기 -->
+	<select id="bview" resultType="com.java.dto.BoardDto">
+		select * from board where bno=#{bno}
+	</select>
+	
+	<!-- 조회수 1 추가 -->
+	<update id="updateBhit">
+		update board set bhit=bhit+1 where bno=#{bno}
+	</update>
+	
+	<!-- 게시글 쓰기 -->
+	<insert id="bwrite">
+		insert into board values(
+		board_seq.nextval,#{btitle},#{bcontent},#{id},board_seq.currval,0,0,0,sysdate
+		)
+	</insert>
+	
+	<delete id="bdelete">
+		delete board where bno=#{bno}
+	</delete>
+	
+
+</mapper>

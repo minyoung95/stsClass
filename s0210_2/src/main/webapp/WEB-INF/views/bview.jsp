@@ -46,17 +46,27 @@
 	        <td colspan="3" class="article">${boardDto.bcontent}</td>
 	      </tr>
 	      <tr>
-	        <td colspan="3"><strong>다음글</strong> <span class="separator">|</span> [키즈잼] 2월 프로그램 안내</td>
-	      </tr>
-	      <tr>
-	        <td colspan="3"><strong>이전글</strong> <span class="separator">|</span> [키즈잼] 2020년 1분기 정기 휴관일 안내</td>
-	      </tr>
+        <td colspan="3"><strong>다음글</strong> <span class="separator">|</span>
+        <c:if test="${nextDto!=null }">
+        	<a href="/board/bview?bno=${nextDto.bno}">${nextDto.btitle}</a>
+        </c:if>
+        <c:if test="${nextDto== null }">다음글이 없습니다.</c:if>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>이전글</strong> <span class="separator">|</span>
+        <c:if test="${prevDto!=null }">
+        	<a href="/board/bview?bno=${prevDto.bno}">${prevDto.btitle }</a>
+        </c:if>
+        <c:if test="${prevDto== null }">이전글이 없습니다.</c:if>
+        </td>
+      </tr>
 	    </table>
 	
-	    <a href="/board/blist"><div class="list">목록</div></a>
+	    <a href="/board/blist?page=${page}"><div class="list">목록</div></a>
 	    <a onclick="deleteDtn(${boardDto.bno})"><div class="list">삭제</div></a>
-	    <a href=""><div class="list">수정</div></a>
-	    <a href=""><div class="list">답변달기</div></a>
+	    <a href="/board/bupdate?bno=${boardDto.bno}&page=${page}"><div class="list">수정</div></a>
+	    <a href="/board/breply?bno=${boardDto.bno}&page=${page}"><div class="list">답변달기</div></a>
 	  </section>
 	</body>
 </html>

@@ -4,31 +4,106 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java.dao.BoardMapper">
 
-	<!-- 전체글 가져오기 : 역순 -->
+	<!-- 전체글 가져오기 : 그룹핑 (문구:$, 데이터값:#) -->
 	<select id="blist" resultType="com.java.dto.BoardDto">
-		select * from board order by bno desc
+		select * from ( select row_number() over (
+		order by bgroup desc,bstep asc) rnum,
+		a.* from board a
+		<if test="category == 'btitle' or category == 'bcontent'">
+			where ${category} like '%'||#{searchW}||'%'
+		</if>
+		<if test="category == 'all'">
+			where btitle like '%'||#{searchW}||'%' or bcontent like
+			'%'||#{searchW}||'%'
+		</if>
+		)
+		where rnum between #{startrow} and #{endrow}
 	</select>
-	
+	<select id="countAll" resultType="int">
+		select count(*) from board
+		<if test="category == 'btitle' or category == 'bcontent'">
+			where ${category} like '%'||#{searchW}||'%'
+		</if>
+		<if test="category == 'all'">
+			where btitle like '%'||#{searchW}||'%' or bcontent like
+			'%'||#{searchW}||'%'
+		</if>
+	</select>
+
 	<!-- 게시글 1개 가져오기 -->
 	<select id="bview" resultType="com.java.dto.BoardDto">
-		select * from board where bno=#{bno}
+		select * from board where
+		bno=#{bno}
 	</select>
-	
+
+	<!-- 수정글 가져오기 -->
+	<select id="bupdateview" resultType="com.java.dto.BoardDto">
+		select * from board where
+		bno=#{bno}
+	</select>
+
+	<!-- 답변글 가져오기 -->
+	<select id="breplyview" resultType="com.java.dto.BoardDto">
+		select * from board where
+		bno=#{bno}
+	</select>
+
+	<!-- 이전게시글 가져오기 -->
+	<select id="selectOnePrev" resultType="com.java.dto.BoardDto">
+		select * from board where
+		bno = (
+		select prev_bno from
+		( select bno,lead(bno,1,-1) over (order by
+		bgroup desc,bstep asc) as prev_bno from board
+		) where bno=#{bno}
+		)
+	</select>
+
+	<!-- 이전게시글 가져오기 -->
+	<select id="selectOnenext" resultType="com.java.dto.BoardDto">
+		select * from board where
+		bno = (
+		select next_bno from
+		( select bno,lag(bno,1,-1) over (order by
+		bgroup desc,bstep asc) as next_bno from board
+		) where bno=#{bno}
+		)
+	</select>
+
 	<!-- 조회수 1 추가 -->
 	<update id="updateBhit">
 		update board set bhit=bhit+1 where bno=#{bno}
 	</update>
-	
+
+	<!-- 게시글 수정 -->
+	<update id="bupdate">
+		update board set btitle=#{btitle},
+		bcontent=#{bcontent} where bno=#{bno}
+	</update>
+
+	<!-- 스텝 증가 -->
+	<update id="bstepUp">
+		update board set bstep = bstep+1 where
+		bgroup=#{bgroup} and bstep > #{bstep}
+	</update>
+
 	<!-- 게시글 쓰기 -->
 	<insert id="bwrite">
 		insert into board values(
 		board_seq.nextval,#{btitle},#{bcontent},#{id},board_seq.currval,0,0,0,sysdate
 		)
 	</insert>
-	
+
+	<!-- 답변 쓰기 -->
+	<insert id="breply">
+		insert into board values(
+		board_seq.nextval,#{btitle},#{bcontent},#{id},#{bgroup},#{bstep}+1,#{bindent}+1,0,sysdate
+		)
+	</insert>
+
 	<delete id="bdelete">
 		delete board where bno=#{bno}
 	</delete>
-	
+
 
 </mapper>

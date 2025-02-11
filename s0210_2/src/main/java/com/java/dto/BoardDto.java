@@ -18,7 +18,7 @@ public class BoardDto {
 	private String bcontent;
 	private String id;
 	private int bgroup;
-	private int bsetp;
+	private int bstep;
 	private int bindent;
 	private int bhit;
 	private Timestamp bdate;

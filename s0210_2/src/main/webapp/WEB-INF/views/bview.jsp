@@ -45,6 +45,17 @@
 	      <tr>
 	        <td colspan="3" class="article">${boardDto.bcontent}</td>
 	      </tr>
+   	      <tr>
+	        <td colspan="3" class="article">
+		        <c:if test="${boardDto.bfile != null}">
+				파일첨부 : <br/>
+				<img src="/upload/board/${boardDto.bfile}" width="50%">
+		        </c:if>
+		        <c:if test="${boardDto.bfile == null}">
+		        
+		        </c:if>  
+	        </td>
+	      </tr>
 	      <tr>
         <td colspan="3"><strong>다음글</strong> <span class="separator">|</span>
         <c:if test="${nextDto!=null }">

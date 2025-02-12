@@ -23,4 +23,5 @@ public class BoardDto {
 	private int bhit;
 	private Timestamp bdate;
 	private String bfile;
+	
 }

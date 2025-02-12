@@ -90,7 +90,7 @@
 	<!-- 게시글 쓰기 -->
 	<insert id="bwrite">
 		insert into board values(
-		board_seq.nextval,#{btitle},#{bcontent},#{id},board_seq.currval,0,0,0,sysdate
+		board_seq.nextval,#{btitle},#{bcontent},#{id},board_seq.currval,0,0,0,sysdate,#{bfile}
 		)
 	</insert>
 

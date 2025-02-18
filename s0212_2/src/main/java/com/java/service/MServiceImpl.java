@@ -33,7 +33,7 @@ public class MServiceImpl implements MService {
 		
 		String pwCode = getCreateKey();
 		
-		// 네이버 이메일 발송
+		// 네이버 이메일 발송 - 보내는 이의 메일도 네이버메일이여야함
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setTo(email); // 받는이
 		message.setFrom("mylim52@naver.com"); // 보내는이
@@ -55,7 +55,7 @@ public class MServiceImpl implements MService {
 		MimeMessage message = javaMailsender.createMimeMessage();
 		
 		try {
-			message.setSubject("[ 안내 ] 인증코드를 보내드립니다.");
+			message.setSubject("[ 안내 ] 인증코드를 보내드립니다.","utf-8");
 			String hdata = ""
 //					+ "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n"
 //					+ "<html xmlns='http://www.w3.org/1999/xhtml' lang='ko' xml:lang='ko'>\r\n"

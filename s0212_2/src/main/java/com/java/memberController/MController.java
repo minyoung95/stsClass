@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.java.dto.MemberDto;
 import com.java.service.MService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -19,7 +22,12 @@ public class MController {
 	@Autowired MService mService;
 	
 	@GetMapping("/member/login")
-	public String login() {
+	public String login(HttpServletResponse response, HttpServletRequest request) {
+		
+		// 쿠키생성
+//		Cookie cookie = new Cookie("cook_id", "aaa");
+//		cookie.setMaxAge(60*60*24); // 60초*60분*24시간
+//		response.addCookie(cookie);
 		return "member/login";
 	}
 	
@@ -47,13 +55,32 @@ public class MController {
 		return "member/step01";
 	}
 	
+	@GetMapping("/member/step02")
+	public String step02() {
+		session.removeAttribute("pwCode"); // 세션삭제
+		return "member/step02";
+	}
+	
 	@ResponseBody
 	@PostMapping("/member/sendEmail")
 	public String sendEmail(String email) {
 		
 //		String pwCode = mService.sendEmail(email); // text
 		String pwCode = mService.sendEmail2(email); // html
+		session.setAttribute("pwCode", pwCode);
 		return pwCode;
+	}
+	
+	@ResponseBody
+	@PostMapping("/member/pwCode")
+	public String pwCode(String pwCode) {
+		
+		String pw = (String)session.getAttribute("pwCode");
+		if(pwCode.equals(pw)) {
+			return "1";
+		}else {
+			return "0";
+		}
 	}
 	
 }

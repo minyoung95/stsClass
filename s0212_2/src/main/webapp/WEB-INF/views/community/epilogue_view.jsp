@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +22,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<scirpt src="http://code.jquery.com/jquery-latest.min.js"></scirpt>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -201,33 +206,80 @@ $(document).ready(function() {
 					<li><a href="#" id="leftNavi2">사용 후기</a></li>
 					<li class="last"><a href="#" id="leftNavi3">ENJOY COFFEE</a></li>
 				</ul>			
-			</div><script type="text/javascript">initSubmenu(3,0);</script>
+			</div><script type="text/javascript">initSubmenu(2,0);</script>
 
 
 			<!-- contents -->
 			<div id="contents">
 				<div id="mypage">
-					<h2><strong>ENJOY COFFEE</strong><span>쟈뎅 커피를 보다 맛있게 즐기는 법을 알려드립니다.</span></h2>
+					<h2><strong>사용 후기</strong><span>쟈뎅 제품을 구매하신 회원님들의 소중한 후기입니다.</span></h2>
 					
-					<div class="viewDivMt">
+					<div class="productTab normaltab">
+						<ul>
+							<li><a href="#" class="on">포토 구매후기</a></li>
+							<li class="last"><a href="#">상품평</a></li>
+						</ul>						
+					</div>
+
+					<div class="viewDivTab">
 						<div class="viewHead">
 							<div class="subject">
 								<ul>
-									<li>쟈뎅,테이크아웃 ‘카페모리 즐기기</li>
+									<li class="cate">[먹어봤어요]</li>
+									<li>&nbsp;쟈뎅, 테이크아웃 카페모리 구매후기</li>
 								</ul>
+							</div>
+							<div class="day">
+								<p class="txt">제품명<span>쟈뎅, 테이크아웃 ‘카페모리’ </span></p>
 							</div>
 							<div class="data">
 								<ul>
+									<li>작성자<span>wldkjf****</span></li>
 									<li class="tnone">등록일<span>2014-03-24</span></li>
 									<li class="tnone">조회수<span>2146</span></li>
+									<li class="last">평점
+										<span>
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+										</span>
+									</li>
 								</ul>
 							</div>
 						</div>
 
 						<div class="viewContents">
-							27년 만의 기록적인 한파가 연일 지속되면서, 따뜻하고 달콤하게 즐길 수 있는 ‘핫초코’가 인기를 끌며<br/>보다 맛있게 카페모리를 즐기는 법을 소개해 드리겠습니다.
+							물을 많이 많이 마셔야 하는 계절입니다.<br/>
+							물도 많이 마셔야 하고 커피도 땡기고 이럴 때 워터커피가 너무 좋아요.<br/>
+							그냥 물은 안넘어가는데 워터커피 덕분엔 시원하고 촉촉한 여름을 보내고 있답니다.
 						</div>
 					</div>
+
+					<!-- 답변 -->
+					<div class="answer">
+						<div class="inbox">
+							<div class="aname">
+								<p>담당자 <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></p>
+							</div>
+
+							<div class="atxt">
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+							</div>
+						</div>
+					</div>
+					<!-- //답변 -->
+
 
 					<!-- 이전다음글 -->
 					<div class="pnDiv web">
@@ -257,9 +309,11 @@ $(document).ready(function() {
 
 
 					<!-- Btn Area -->
-					<div class="btnArea btline">
+					<div class="btnArea">
 						<div class="bRight">
 							<ul>
+								<li><a href="#" class="nbtnbig mw">수정</a></li>
+								<li><a href="#" class="nbtnbig mw">삭제</a></li>
 								<li><a href="#" class="sbtnMini mw">목록</a></li>
 							</ul>
 						</div>
